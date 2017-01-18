@@ -4,7 +4,7 @@ var _awsKcl = require('aws-kcl');
 
 var _awsKcl2 = _interopRequireDefault(_awsKcl);
 
-var _recordProcessor = require('./record-processor');
+var _recordProcessor = require('./recordProcessor');
 
 var _recordProcessor2 = _interopRequireDefault(_recordProcessor);
 
