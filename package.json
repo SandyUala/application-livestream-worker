@@ -1,0 +1,11 @@
+{
+  "name": "kinesis-consumer-livestream",
+  "version": "1.0.0",
+  "description": "Kinesis consumer for the ingestion api. Logs events to a file to be picked up by Filebeat.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alois <alois@astronomer.io>",
+  "license": "MIT"
+}
