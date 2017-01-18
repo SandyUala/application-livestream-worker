@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Alois <alois@astronomer.io>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@astronomerio/astronomer-kinesis-record-processor": "github:astronomerio/astronomer-kinesis-record-processor#2.0.0"
+  }
 }
