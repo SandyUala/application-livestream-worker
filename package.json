@@ -4,7 +4,7 @@
   "description": "Kinesis consumer for the ingestion api. Logs events to a file to be picked up by Filebeat.",
   "main": "lib/index.js",
   "scripts": {
-"build": "babel lib -d dist",
+    "build": "babel lib -d dist",
     "cleanup": "ast-aws delete-stream -p properties/dev.properties",
     "dev": "kcl-bootstrap ./lib/index.js -e -p properties/dev.properties -j /usr/bin/java",
     "deploy": "npm run build && eb deploy",
@@ -16,6 +16,13 @@
   "author": "Alois <alois@astronomer.io>",
   "license": "MIT",
   "dependencies": {
-    "@astronomerio/astronomer-kinesis-record-processor": "github:astronomerio/astronomer-kinesis-record-processor#2.0.0"
+    "@astronomerio/astronomer-kinesis-record-processor": "github:astronomerio/astronomer-kinesis-record-processor#2.0.0",
+    "aws-kcl": "^0.6.0",
+    "babel-polyfill": "^6.20.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0"
   }
 }
