@@ -5,11 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel lib -d dist",
-    "cleanup": "ast-aws delete-stream -p properties/dev.properties",
-    "dev": "kcl-bootstrap ./lib/index.js -e -p properties/dev.properties -j /usr/bin/java",
-    "deploy": "npm run build && eb deploy",
-    "setup": "ast-aws ensure-stream -p properties/dev.properties",
-    "start": "kcl-bootstrap ./dist/index.js -e -p properties/prod.properties -j /usr/bin/java",
+    "dev": "kcl-bootstrap -e -p properties/dev.properties -j /usr/bin/java",
+    "start": "kcl-bootstrap -e -p properties/prod.properties -j /usr/bin/java",
     "tail": "tail -f app.log | bunyan -o short",
     "test": "mocha -r babel-register -r babel-polyfill -r dotenv/config test/index.test.js"
   },
