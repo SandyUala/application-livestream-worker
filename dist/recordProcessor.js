@@ -45,7 +45,7 @@ var Livestream = function (_RecordProcessor) {
                 payload = Buffer.from(data, 'base64').toString('utf8');
 
 
-                this.logger.info({ event: payload });
+                this.logger.info({ clickstream_event: payload });
 
               case 3:
               case 'end':
