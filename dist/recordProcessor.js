@@ -33,7 +33,7 @@ var Livestream = function (_RecordProcessor) {
     key: 'processRecord',
     value: function () {
       var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(record) {
-        var partitionKey, sequenceNumber, data, payload;
+        var partitionKey, sequenceNumber, data, payload, event;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -44,8 +44,13 @@ var Livestream = function (_RecordProcessor) {
 
                 payload = Buffer.from(data, 'base64').toString('utf8');
 
+                try {
+                  event = JSON.parse(payload);
 
-                this.logger.info({ clickstream_event: payload });
+                  this.logger.info({ appId: event.appId, userId: event.userId, type: event.type, raw_clickstream_event: JSON.stringify(event) }, 'Received clickstream event for appId: ' + event.appId);
+                } catch (e) {
+                  this.logger.warn(e, 'Received invalid JSON syntax in clickstream.');
+                }
 
               case 3:
               case 'end':
