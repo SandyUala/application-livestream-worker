@@ -1,6 +1,6 @@
 {
   "name": "kinesis-consumer-livestream",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Kinesis consumer for the ingestion api. Logs events to a file to be picked up by Filebeat.",
   "main": "lib/index.js",
   "scripts": {
