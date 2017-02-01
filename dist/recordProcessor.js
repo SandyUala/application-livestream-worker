@@ -47,7 +47,7 @@ var Livestream = function (_RecordProcessor) {
                 try {
                   event = JSON.parse(payload);
 
-                  this.logger.info({ appId: event.appId, userId: event.userId, receivedAt: event.receivedAt, raw_clickstream_event: JSON.stringify(event) });
+                  this.logger.info({ appId: event.appId, receivedAt: event.receivedAt, raw_clickstream_event: JSON.stringify(event) });
                 } catch (e) {
                   this.logger.warn(e, 'Received invalid JSON syntax in clickstream.');
                 }
