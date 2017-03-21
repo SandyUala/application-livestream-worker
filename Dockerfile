@@ -1,1 +1,1 @@
-FROM astronomerio/kinesis-record-processor:2.0.2
+FROM astronomerio/kinesis-consumer:v3.0.7
