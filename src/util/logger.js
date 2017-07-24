@@ -6,7 +6,7 @@ const kinesis = new KinesisWritable({
   streamName: 'application-livestream',
   partitionKey: (msg) => {
     const event = JSON.parse(msg);
-    return event.userId || event.anonymousId;
+    return event.writeKey || event.appId;
   },
   buffer: {
     length: 100, // or when 100 messages are in the queue
