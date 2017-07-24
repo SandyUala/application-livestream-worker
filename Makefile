@@ -1,4 +1,4 @@
-IMAGE_NAME = astronomerio/ingestion-tracking-worker
+IMAGE_NAME = astronomerio/application-livestream-worker
 PACKAGE_VERSION=$(shell node -p "require('./package.json').version")
 
 .PHONY: build build-version push push-version

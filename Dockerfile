@@ -14,7 +14,7 @@ COPY package.json /usr/src/app
 COPY package-lock.json /usr/src/app
 RUN npm install --production
 
-COPY lib /usr/src/app/lib
+COPY src /usr/src/app/src
 COPY properties /usr/src/app/properties
 
 CMD ["npm", "run", "dev"]
