@@ -14,7 +14,7 @@ const kinesis = new KinesisWritable({
 });
 
 const applicationLivestreamOptions = {
-  name: 'ingestion-tracking-worker',
+  name: 'application-livestream-worker',
   serializers: { err: bunyan.stdSerializers.err },
   streams: [{
     level: 'info',
