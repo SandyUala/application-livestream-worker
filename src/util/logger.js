@@ -3,17 +3,17 @@ const bunyan = require('bunyan');
 
 const kinesis = new KinesisWritable({
   region: 'us-east-1',
-  streamName: 'ingestion-tracking',
+  streamName: 'application-livestream',
   partitionKey: (msg) => {
     const event = JSON.parse(msg);
     return event.userId || event.anonymousId;
   },
   buffer: {
-    lenght: 100, // or when 100 messages are in the queue
+    length: 100, // or when 100 messages are in the queue
   },
 });
 
-const ingestionTrackingOptions = {
+const applicationLivestreamOptions = {
   name: 'ingestion-tracking-worker',
   serializers: { err: bunyan.stdSerializers.err },
   streams: [{
@@ -23,7 +23,7 @@ const ingestionTrackingOptions = {
   }],
 };
 
-const logger = bunyan.createLogger(ingestionTrackingOptions);
+const logger = bunyan.createLogger(applicationLivestreamOptions);
 
 // udp errors will be reemitted here. figure out what to do with them later
 logger.on('error', () => { });

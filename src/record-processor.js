@@ -3,36 +3,32 @@ const { promisify } = require('util');
 const promiseRetry = require('promise-retry');
 const logger = require('./util/logger');
 
-class IngestionTracking {
+class ApplicationLivestreamWorker {
   constructor() {
     this.shardId = null;
     this.logger = logger;
   }
 
   async processRecord({ record, checkpointer, currentRecord, totalRecords }) {
-    const { data } = record;
-    const jsonString = Buffer.from(data, 'base64').toString();
-    const event = JSON.parse(jsonString);
+    try {
+      const { data } = record;
+      const jsonString = Buffer.from(data, 'base64').toString();
+      const event = JSON.parse(jsonString);
 
+      // send the event to the livestream
+      this.logger.info({
+        messageId: event.messageId,
+        writeKey: event.appId || event.writeKey,
+        rawClickstreamEvent: jsonString,
+        type: event.type,
+      });
 
-    // main log that will go to elasticsearch
-    const log = {
-      event: 'ingest_event',
-      userId: event.userId,
-      anonymousId: event.anonymousId,
-      writeKey: event.appId || event.writeKey,
-      receivedAt: event.receivedAt,
-      sentAt: event.sentAt,
-      type: event.type,
-      shardId: this.shardId,
-    };
-
-    if (event.timestamp) log.timestamp = event.timestamp;
-    this.logger.info(log);
-
-    // checkpoint at the last record
-    if (currentRecord === totalRecords) {
-      await this.checkpoint(checkpointer);
+      // checkpoint at the last record
+      if (currentRecord === totalRecords) {
+        await this.checkpoint(checkpointer);
+      }
+    } catch (err) {
+      this.logger.error({ err });
     }
   }
 
@@ -128,4 +124,4 @@ class IngestionTracking {
   }
 }
 
-module.exports = IngestionTracking;
+module.exports = ApplicationLivestreamWorker;
